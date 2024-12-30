@@ -1,0 +1,19 @@
+{
+  "name": "superb/module-content-security",
+  "description": "Content Security",
+  "type": "magento2-module",
+  "license": "proprietary",
+  "config": {},
+  "version": "1.0.0",
+  "require": {
+    "magento/module-cms": "*"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Superb\\ContentSecurity\\": ""
+    }
+  }
+}
