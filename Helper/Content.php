@@ -18,15 +18,15 @@ class Content
             libxml_use_internal_errors(true);
             $dom = new \DOMDocument();
             $dom->loadHTML(
-                mb_convert_encoding(strip_tags($content, '<' . implode('><', $allowedTags) . '>'), 'HTML-ENTITIES', 'UTF-8'),
-                LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOENT
+                mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'),
+                LIBXML_NOENT | LIBXML_HTML_NODEFDTD
             );
             foreach ((new \DOMXPath($dom))->query('//@*') as $node) {
                 if (!in_array($node->nodeName, $allowedAttributes)) {
                     $node->parentNode->removeAttribute($node->nodeName);
                 }
             }
-            $content = $dom->saveHTML();
+            $content = strip_tags($content, '<' . implode('><', $allowedTags) . '>');
         }
         return $content;
     }
