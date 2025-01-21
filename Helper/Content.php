@@ -26,6 +26,7 @@ class Content
                     $node->parentNode->removeAttribute($node->nodeName);
                 }
             }
+            $content = $dom->saveHTML();
             $content = strip_tags($content, '<' . implode('><', $allowedTags) . '>');
         }
         return $content;
