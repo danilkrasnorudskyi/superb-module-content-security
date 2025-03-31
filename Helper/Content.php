@@ -18,7 +18,7 @@ class Content
             libxml_use_internal_errors(true);
             $dom = new \DOMDocument();
             $dom->loadHTML(
-                mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'),
+                mb_encode_numericentity($content, [0x80, 0x10FFFF, 0, 0x1FFFFF], 'UTF-8'),
                 LIBXML_NOENT | LIBXML_HTML_NODEFDTD
             );
             foreach ((new \DOMXPath($dom))->query('//@*') as $node) {
